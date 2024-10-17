@@ -80,4 +80,4 @@ class Category(models.Model):
     class Meta:
         db_table = 'Category'
     def __str__(self) -> str:
-        return f'{self.id} {self.name} {self.desc}'
+        return f'{self.id} {self.name} {self.description}'

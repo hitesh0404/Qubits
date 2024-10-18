@@ -24,7 +24,7 @@ TYPE_CHOICE = [
 class Brand(models.Model):
     logo = models.ImageField(upload_to='images/brand/logo')
     name = models.CharField(max_length=20)
-    tagline = models.CharField(max_length=20)
+    tagline = models.CharField(max_length=50)
     since  = models.DateField()
     types =  models.CharField(max_length=20,choices=TYPE_CHOICE)
     origin  = models.CharField(max_length=30)

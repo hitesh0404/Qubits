@@ -1,10 +1,32 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>
+        Qubits|
+    {% block title %}
+        Home
+    {% endblock %}
+        </title>
+    <style>
+        .nav{
+            background-color: black;
+            color:wheat !important;
+            
+        }
+        .nav>a:visited{
+            color: azure;
+        }
+        .nav>a{
+            color: azure;
+        }
+    {% block style %}
     
+    {% endblock %}
+</style>
+
 </head>
 <body>
     <nav
@@ -13,11 +35,14 @@
         <a class="nav-link " href="/" aria-current="page"
             > Home</a
         >
-        <a class="nav-link" href="/product/brand-list">Brands</a>
-        <a class="nav-link " href="#">Disabled link</a>
+        <a class="nav-link" href="{% url 'brand_list' %}">Brands</a>
+        <a class="nav-link " href="{% url 'login' %}">Login </a>
+        <a class="nav-link " href="{% url 'register' %}">Register </a>
     </nav>
     
 {% block content %}
+
+<h1>We are in Base .html</h1>
 
 {% endblock %}
 

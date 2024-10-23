@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<!-- Created By CodingNepal -->
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title>Login Form Design | CodeLab</title>
-      <link rel="stylesheet" href="style.css">
-      <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+{% extends 'base.html' %}
+
+
+{% block style %}
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -137,9 +133,16 @@ form .pass-link a:hover,
 form .signup-link a:hover{
   text-decoration: underline;
 }
-      </style>
-   </head>
-   <body>
+
+{% endblock %}
+
+{% block title %}
+Login Form
+{% endblock %}
+
+{% block content %}
+
+    
       <div class="wrapper">
          <div class="title">
             Login Form
@@ -166,9 +169,11 @@ form .signup-link a:hover{
                <input type="submit" value="Login">
             </div>
             <div class="signup-link">
-               Not a member? <a href="#">Signup now</a>
+               Not a member? <a href="{% url 'register' %}">Signup now</a>
             </div>
          </form>
       </div>
-   </body>
-</html>
+
+
+
+{% endblock %}

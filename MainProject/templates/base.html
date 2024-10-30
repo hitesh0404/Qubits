@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +25,15 @@
     {% block style %}
     
     {% endblock %}
+
 </style>
+
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 <body>
+
     <nav
         class="nav justify-content-center  "
     >
@@ -38,6 +43,15 @@
         <a class="nav-link" href="{% url 'brand_list' %}">Brands</a>
         <a class="nav-link " href="{% url 'login' %}">Login </a>
         <a class="nav-link " href="{% url 'register' %}">Register </a>
+        <a class="nav-link " href="{% url 'add_product' %}">Add Product </a>
+        <a class="nav-link" href="{% url 'product_list' %}">Products </a>
+
+
+        <a class="nav-link " href="{% url 'add_product_with_django_form' %}"> Add Product with Django Form</a>
+        <a class="nav-link " href="{% url 'add_brand' %}">Add Brand </a>
+
+
+
     </nav>
     
 {% block content %}

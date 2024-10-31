@@ -73,3 +73,21 @@ def update_product(request,id):
         return redirect( 'product_list' )
 
 
+from .forms import BrandCreationForm,ProductCreationForm
+def add_brand(request):
+    brand_form = BrandCreationForm()
+    context={
+        'form':brand_form,
+        'entity':'Brand'
+    }
+    return render(request,'product/add_entity.html',context)
+
+def add_product_with_django_form(request):
+    product_form = ProductCreationForm()
+    context={
+        'form':product_form,
+        'entity':'Product'
+    }
+    return render(request,'product/add_entity.html',context)
+
+

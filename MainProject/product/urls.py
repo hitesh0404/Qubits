@@ -9,5 +9,5 @@ urlpatterns = [
     path('delete-product/<int:id>/',views.product_details,name='delete_product'),
     path('add-product',views.AddProduct.as_view(),name='add_product'),
     path('add-product-with-django-form',views.add_product_with_django_form,name='add_product_with_django_form'),
-    path('add-brand',views.add_brand,name = 'add_brand'),
+    path('add-brand',views.add_brand, name='add_brand'),
 ]

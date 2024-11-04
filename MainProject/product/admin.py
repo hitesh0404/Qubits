@@ -4,3 +4,5 @@ from django.contrib import admin
 from .models import (Product,HsnCode,Category,Brand,ProductImages)
  
 admin.site.register([Product,HsnCode,Category,Brand,ProductImages])
+admin.site.site_header='My Site'
+admin.site.site_title='My Page'

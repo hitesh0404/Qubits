@@ -32,6 +32,8 @@ urlpatterns = [
     path('blog/', TemplateView.as_view(template_name='single-blog.html'), name='single-blog'),  # Single blog page
     path('regular-page/', TemplateView.as_view(template_name='regular-page.html'), name='regular-page'),  # Regular page
     path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),  # Contact page
+    path('contact/', TemplateView.as_view(template_name='contact.html'), name='cart'),  # Contact page
+    # path('contact/', TemplateView.as_view(template_name='contact.html'), name='mailto'),  # Contact page
 ]
 
 

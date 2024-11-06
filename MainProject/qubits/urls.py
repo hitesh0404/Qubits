@@ -36,8 +36,6 @@ urlpatterns = [
     # path('contact/', TemplateView.as_view(template_name='contact.html'), name='mailto'),  # Contact page
 ]
 
-
-
 from django.conf import settings
 from django.conf.urls.static import static
 if settings.DEBUG:

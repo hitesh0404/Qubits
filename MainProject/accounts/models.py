@@ -26,4 +26,3 @@ class Customer(models.Model):
 
 
 
-    

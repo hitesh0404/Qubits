@@ -144,11 +144,12 @@ form .signup-link a:hover{
          <div class="title">
             Register Form
          </div>
-         <form action="" method="post">
-           {% csrf_token %} 
-          {{ csrf_token }}
-          {{form.as_div}}
-                        <div class="field">
+         <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %} 
+            
+            {{user_form.as_div}}
+            {{customer_form.as_div}}
+            <div class="field">
                <input type="submit" value="Register">
             </div>
             <div class="signup-link">
@@ -157,4 +158,5 @@ form .signup-link a:hover{
          </form>
       </div>
 
+      
 {% endblock %}

@@ -1,7 +1,8 @@
 from django import forms
 
 from .models import *
-class RegisterForm(forms.ModelForm):
+
+class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(max_length=30,widget=forms.PasswordInput(
         attrs={
         'placeholder':'Enter Password',
@@ -13,5 +14,11 @@ class RegisterForm(forms.ModelForm):
     }
     ))
     class Meta:
+        model = User
+        fields = ['username','first_name','last_name','email']
+    
+class CustomerRegisterForm(forms.ModelForm):
+    dob = forms.DateField(widget=forms.DateInput)
+    class Meta:
         model = Customer
-        fields = '__all__'
+        exclude = ('user','dob')

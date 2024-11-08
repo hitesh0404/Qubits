@@ -54,16 +54,27 @@ class Register(View):
             customer.dob = request.POST.get('dob')
             customer.user = user
             customer.save()
+            return redirect('login')
         else:            
             messages.error(request,'Fill the Form correctly')
             return render(request,'accounts/register.html',context)
         return redirect('/')
 
+from django.contrib.auth import authenticate,login
 
+class Login(View):
+    def get(self,request):
+        return render(request,'accounts/login.html')
 
-
-def login(request):
-    context = {
-        'page_name' : 'Log In'
-    }
-    return render(request,'accounts/login.html',context)
+    def post(self,request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request=request,username=username,password=password)
+        if user:
+            login(request,user)
+            messages.success(request,'login SuccessFull')
+            messages.info(request,f'Welcome user {user.username}')
+            return redirect('/')
+        else:
+            messages.error(request,'authentication failure')
+            return redirect('login')

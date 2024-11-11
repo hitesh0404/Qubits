@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&pa5s$q&vpx%g0%+w^0&e_qghrc-0b$sehhl1azksb3(wihn^z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['hiteshkukaramprajapati.pythonanywhere.com','127.0.0.1']
 
 
 # Application definition
@@ -89,8 +89,7 @@ DATABASES = {
         "OPTIONS": {
             "read_default_file": os.path.join(BASE_DIR,"my.cnf"),
         },
-    }
-}
+    }}
 
 
 # Password validation

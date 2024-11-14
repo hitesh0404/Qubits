@@ -1,8 +1,10 @@
+from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 # Create your views here.
 from django.views import View
 from django.contrib import messages
+from .forms import *
 def register(request):
     if request.method == 'GET':
         print(' GET method')
@@ -19,7 +21,6 @@ def register(request):
         user = User.objects.create_superuser(username=username,password=password)
         print(user)
         return redirect('/') 
-from .forms import *
 class Register(View):
     
     def get(self,request):
@@ -60,7 +61,6 @@ class Register(View):
             return render(request,'accounts/register.html',context)
         return redirect('/')
 
-from django.contrib.auth import authenticate,login
 
 class Login(View):
     def get(self,request):
@@ -78,3 +78,8 @@ class Login(View):
         else:
             messages.error(request,'authentication failure')
             return redirect('login')
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('/')

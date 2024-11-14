@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&pa5s$q&vpx%g0%+w^0&e_qghrc-0b$sehhl1azksb3(wihn^z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hiteshkukaramprajapati.pythonanywhere.com','127.0.0.1']
+ALLOWED_HOSTS = ['hiteshkukaramprajapati.pythonanywhere.com','127.0.0.1','192.168.0.1']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'product.apps.ProductConfig',
     'accounts.apps.AccountsConfig',
+    'order.apps.OrderConfig',
     'django_extensions',
 ]
 

@@ -40,12 +40,13 @@ class Register(View):
                 'user_form': user_form,
                 'customer_form': customer_form,
                 }
+        
         if user_form.is_valid() and customer_form.is_valid():
             user = user_form.save(commit=False)
             password = request.POST.get('password')
             confirm_password = request.POST.get('confirm_password')
             if password==confirm_password:
-                user.password = password
+                User.set_password(user,password)
             else:
                 messages.error(request,'Password and Confirm password are not same')
                 messages.info(request,'make sure password and confirm password should be same')

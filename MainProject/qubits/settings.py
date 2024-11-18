@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'accounts.apps.AccountsConfig',
     'order.apps.OrderConfig',
+    'cart.apps.CartConfig',
     'django_extensions',
 ]
 

@@ -4,16 +4,6 @@ from django.views import View
 from .models import Product,ProductImages
 
 
-from django.contrib.auth.models import User
-from cart.models import *
-def cart_items(request):
-    u = get_object_or_404(User,username = request.user) 
-    product = get_object_or_404(user =  u)
-    data =[]
-    for x in product:
-        x['image'] = ProductImages.objects.filter(product = x.id).first()
-        data.append( x )
-    return data
 
 
 class AddProduct(View):
@@ -71,7 +61,6 @@ def product_list(request):
     context ={
         'products' : products,
         'categories':categories,
-        'product':cart_items(request),
     }
     return render(request,'product/shop.html',context)
 

@@ -1,26 +1,71 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 {{product.name}}
 {% endblock %}
 
-
 {% block content %}
+    <!-- ##### Single Product Details Area Start ##### -->
+    <section class="single_product_details_area d-flex align-items-center">
 
-{% for image in images %}
-<img src="{{image.image.url}}" alt="{{image.product.name}}" height="200px">
-{% endfor %}
+        <!-- Single Product Thumb -->
+        
+        <div class="single_product_thumb clearfix">
+            <div class="product_thumbnail_slides owl-carousel">
+                {% for image in images %}
+                    <img src="{{image.image.url}}" style="width: 40%;" alt="{{image.product.name}}">
+                {% endfor %}
+            </div>
+        </div>
 
-<p>{{product.name}}</p>
-<p>{{product.price_inclusive}}</p>
-<p>{{product.description}}</p>
+        <!-- Single Product Description -->
+        <div class="single_product_desc clearfix">
+            <span>{{product.brand.name}}</span>
+            <a href="{% url 'cart' %}">
+                <h2>{{product.name}}</h2>
+            </a>
+            <p class="product-price"><span class="old-price">$65.00</span>{{product.price_inclusive}}</p>
+            <p class="product-desc">{{product.description}}</p>
 
-<button onclick="window.location =
-        '{% url 'update_product' product.id %}';" style= "background-color: blue;">
-    Update Product
-</button>
-<button onclick="window.location =
-        '{% url 'delete_product' product.id %}';" style="background-color: blue;">
-    Delete Product
-</button>
+            <!-- Form -->
+            <form class="cart-form clearfix" method="get">
+                <!-- Select Box -->
+                <div class="select-box d-flex mt-50 mb-30">
+                    <select name="select" id="productSize" class="mr-5">
+                        <option value="value">Size: XL</option>
+                        <option value="value">Size: X</option>
+                        <option value="value">Size: M</option>
+                        <option value="value">Size: S</option>
+                    </select>
+                    <select name="select" id="productColor">
+                        <option value="value">Color: Black</option>
+                        <option value="value">Color: White</option>
+                        <option value="value">Color: Red</option>
+                        <option value="value">Color: Purple</option>
+                    </select>
+                </div>
+                <!-- Cart & Favourite Box -->
+                <div class="cart-fav-box d-flex align-items-center">
+                    <!-- Cart -->
+                    <button type="submit" name="addtocart" value="5" class="btn essence-btn">Add to cart</button>
+                    <button type="button" onclick="window.location =
+                    '{% url 'update_product' product.id %}' ;" class="btn essence-btn">
+                    Update Product
+                    </button>
+                    <button type="button" onclick="window.location =
+                    '{% url 'delete_product' product.id %}';" class="btn essence-btn" style="background-color: rgb(221, 11, 11);">
+                    Delete Product
+                    </button>
+                    
+                    <!-- Favourite -->
+                    <div class="product-favourite ml-4">
+                        <a href="{% url '#' %}" class="favme fa fa-heart"></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- ##### Single Product Details Area End ##### -->
+
 {% endblock %}

@@ -204,18 +204,18 @@
                 {% if request.user.is_authenticated %}
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="#" id="essenceCartBtn" ><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                    <a href="#" id="essenceCartBtn" ><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{total_cart_item}}</span></a>
                 </div>
                 {% else %}
                 <div class="cart-area">
-                    <a href="{% url 'login' %}" id="essenceCartBtn" ><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                    <a href="{% url 'login' %}" id="essenceCartBtn" ><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{total_cart_item}}</span></a>
                 </div>
                 {% endif %}
             </div>
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
-
+{% if request.user.is_authenticated %}
     <!-- ##### Right Side Cart Area ##### -->
     <div class="cart-bg-overlay"></div>
 
@@ -223,7 +223,7 @@
 
         <!-- Cart Button -->
         <div class="cart-button">
-            <a href="{% url '#' %}" id="rightSideCart"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+            <a href="{% url '#' %}" id="rightSideCart"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{total_cart_item}}</span></a>
         </div>
 
         <div class="cart-content d-flex">
@@ -231,17 +231,17 @@
             <!-- Cart List Area -->
             <div class="cart-list">
                 <!-- Single Cart Item -->
-                {% for p in product %}
+                {% for item in cart_items %}
                     <div class="single-cart-item">
-                        <a href="{% url 'product_details' p.id %}" class="product-image">
-                            <img src="{{ 'p.image.url' }}" class="cart-thumb" alt="{{image.product}}">
+                        <a href="{% url 'product_details' item.product.id %}" class="product-image">
+                            <img src="{{ item.image.image.url }}" class="cart-thumb" alt="{{ item.image.product}}">
                             <!-- Cart Item Desc -->
                             <div class="cart-item-desc">
                             <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                                <span class="badge">{{p.brand.name}}</span>
-                                <h6>{{p.name}}</h6>
-                                <p class="size">Quantity: {{p.quantity}}</p>
-                                <p class="price">{{p.price_inclusive}}</p>
+                                <span class="badge">{{item.product.brand.name}}</span>
+                                <h6>{{item.product.name}}</h6>
+                                <p class="size">Quantity: {{ item.product.quantity }}</p>
+                                <p class="price">{{ item.product.product.price_inclusive }}</p>
                             </div>
                         </a>
                     </div>
@@ -264,8 +264,8 @@
         </div>
     </div>
     <!-- ##### Right Side Cart End ##### -->
-
-
+ 
+{% endif %}
 
 
 

@@ -3,16 +3,12 @@ from .models import Brand,Category
 from django.views import View
 from .models import Product,ProductImages
 
-
-
-
 class AddProduct(View):
     def get(self,request):
         brands = Brand.objects.all()
         context = {
             'brands':brands
         }
-
         return render(request,'product/create_product.html',context)
     def post(self,request):
         print(request.POST)
@@ -20,7 +16,6 @@ class AddProduct(View):
         price = request.POST.get('price')
         description = request.POST.get('description')
         brand = request.POST.get('brand')
-        
         Product.objects.create(
             name=name,
             price_inclusive = price,
@@ -29,7 +24,6 @@ class AddProduct(View):
             features = ''
             )
         return redirect('/')
-
 
 def brand_list(request):
     data= Brand.objects.all()
@@ -48,16 +42,16 @@ def fetch_image_in_dictionary(image_obj,product_obj):
     return result
 
 def product_list(request):
-    products_objects= Product.objects.all()
-    images = ProductImages.objects.all()
-    products=[]
+    products_objects= Product.objects.all()#fetching all records from product model/table
+    images = ProductImages.objects.all()#fetching all records from productImage model/table
+    products=[]                          #emptu list for result
     for product_obj in products_objects:
-        image = fetch_image_in_dictionary(images,product_obj)
+        image = fetch_image_in_dictionary(images,product_obj)#fetchin 2 image for each product
         products.append( {
             'details':product_obj,
             'images': image
         })
-    categories = Category.objects.all()
+    categories = Category.objects.all()#fetching all records from category model/table
     context ={
         'products' : products,
         'categories':categories,

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from autoslug import AutoSlugField
 class HsnCode(models.Model):
     index = models.BigAutoField(primary_key=True)
@@ -84,3 +85,14 @@ class Category(models.Model):
 
 
 
+
+class Reviews(models.Model):
+    title = models.CharField(max_length=20)
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+    rating = models.IntegerField()
+    review = models.TextField()
+    def __str__(self):
+        return self.title
+    class Meta:
+        unique_together=(('user','product'))

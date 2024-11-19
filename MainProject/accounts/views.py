@@ -68,6 +68,7 @@ class Login(View):
         return render(request,'accounts/login.html')
 
     def post(self,request):
+        print(request.POST)
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request=request,username=username,password=password)

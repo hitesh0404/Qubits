@@ -1,5 +1,5 @@
 from .models import Cart
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from product.models import ProductImages
 def cart_items(request):
     if request.user.is_authenticated:

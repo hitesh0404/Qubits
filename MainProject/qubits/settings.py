@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'order.apps.OrderConfig',
     'cart.apps.CartConfig',
+    'payment.apps.PaymentConfig',
     'django_extensions',
 ]
 

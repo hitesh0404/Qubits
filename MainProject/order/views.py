@@ -23,7 +23,7 @@ class Checkout(View):
             request.session['address_id'] = address_id
             return redirect('proceed_to_pay')
         else:
-            return redirect('ceckout')
+            return redirect('checkout')
         
         
 def proceed_to_pay(request):
@@ -33,25 +33,29 @@ def proceed_to_pay(request):
     user = User.objects.get(username = request.user)
     cart_item = Cart.objects.filter(user = request.user)
     total = 0
-    order = Order.objects.filter(user = user).filter(status='CREATED')
+    order = Order.objects.filter(user = user).filter(status='CREATED').first()
     if not order:
         order = Order.objects.create(
             user = user,
             status = 'CREATED',
-            total  = total,
-            shipping_address = Address.objects.get(request.session['address_id']),
+            total  = total,#0
+            shipping_address = Address.objects.get(id=int(request.session['address_id'])),
             shipping_charges = 100
         )
-    
     for item in cart_item:
         total += item.product.price_inclusive * item.quantity
-        OrderDetails.objects.create(order.order_uuid,item.product,item.quantity,item.product.price_inclusive )
+        OrderDetails.objects.create(
+            order_id = order,
+            product = item.product,
+            quantity = item.quantity,
+            price = item.product.price_inclusive)
     order.total = total
     order.save()
-    data = { "amount": int(total), "currency": "INR", "receipt": order.order_uuid }
+    data = { "amount": int(total), "currency": "INR", "receipt": str(order.order_uuid) }
     razor_pay_order = client.order.create(data=data)
     context = {
         'order':razor_pay_order,
         'data':data,
+        "RAZORPAY_KEY_ID":RAZORPAY_KEY_ID
     }
     return render(request,'order/proceed_to_pay.html',context)

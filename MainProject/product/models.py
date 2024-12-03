@@ -96,3 +96,14 @@ class Reviews(models.Model):
         return self.title
     class Meta:
         unique_together=(('user','product'))
+
+from django.contrib.auth.models import User  # Assuming you're using Django's built-in User model.
+
+class UserInteraction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    interaction_type = models.CharField(max_length=20, choices=[('view', 'View'), ('purchase', 'Purchase')])
+    timestamp = models.DateTimeField(auto_now_add=True)
+    count = models.IntegerField(default=1)
+    def __str__(self):
+        return f'{self.user.username} {self.interaction_type} {self.product.name}'

@@ -10,7 +10,6 @@
     <section class="single_product_details_area d-flex align-items-center">
 
         <!-- Single Product Thumb -->
-        
         <div class="single_product_thumb clearfix">
             <div class="product_thumbnail_slides owl-carousel">
                 {% for image in images %}
@@ -67,5 +66,60 @@
         </div>
     </section>
     <!-- ##### Single Product Details Area End ##### -->
+    {% comment %}
+    <!-- ##### Recommended Products Section Start ##### -->
+    <!-- <section class="recommended_products_area">
+        <h3>Recommended Products</h3>
+        <div class="recommended_products_list">
+            {% if recommended_products %}
+                <ul class="row">
+                    {% for rec_product in recommended_products %}
+                        <li class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="single_product_item">
+                                <a href="{% url 'product_details' rec_product.id %}">
+                                    <img src="{{ rec_product.images.first.image.url }}" alt="{{ rec_product.name }}" style="width: 100%;">
+                                    <h4>{{ rec_product.name }}</h4>
+                                    <p>{{ rec_product.description }}</p>
+                                </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No recommendations available</p>
+            {% endif %}
+        </div>
+    </section> -->
+    {% endcomment %}
+    <section class="recommended_products_area">
+        <h3>Recommended Products</h3>
+        <div class="recommended_products_list">
+            {% if recommended_products %}
+                <ul class="row">
+                    {% for rec_product in recommended_products %}
+                        <li class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="single_product_item">
+                                <a href="{% url 'product_details' rec_product.details.id %}">
+                                    <!-- Displaying product image -->
+                                    <img height="200px" width="100px" src="{{ rec_product.images.A.image.url }}" 
+                                         alt="{{ rec_product.details.name }}" 
+                                         style="width: 100%; height: auto;">
+                                    <h4>{{ rec_product.details.name }}</h4>
+                                    <p>{{ rec_product.details.description|truncatewords:15 }}</p>
+                                    <p class="product-price">
+                                        <span class="old-price">${{ rec_product.details.price_inclusive }}</span>
+                                    </p>
+                                </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No recommendations available at the moment. Check back later!</p>
+            {% endif %}
+        </div>
+    </section>
+    
+    <!-- ##### Recommended Products Section End ##### -->
 
 {% endblock %}

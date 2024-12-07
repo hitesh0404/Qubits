@@ -234,7 +234,7 @@
                  <form action="{% url 'update_cart' %}" method="get">
                 {% for item in cart_items %}
                     <div class="single-cart-item">
-                        <a href="{% url 'product_details' item.product.id %}" class="product-image">
+                        <a href="{% url 'product_details' item.product.product.id %}" class="product-image">
                             <img src="{{ item.image.image.url }}" class="cart-thumb" alt="{{ item.image.product}}">
                         </a>
                             <!-- Cart Item Desc -->
